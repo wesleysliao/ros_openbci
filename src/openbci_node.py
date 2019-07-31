@@ -25,10 +25,14 @@ class openbci:
 
         self.pub.publish(eegmsg)
 
-
-bci = openbci()
-
-rospy.spin()
+if __name__ == "__main__":
+    try:
+        OpenBCI_USB_PORT = rospy.get_param("OpenBCI_USB_PORT")
+        bci = openbci(usb_device = OpenBCI_USB_PORT)
+    except:
+        bci = openbci()
+    
+    rospy.spin()
 
 
 
